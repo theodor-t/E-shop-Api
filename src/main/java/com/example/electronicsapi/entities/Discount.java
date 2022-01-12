@@ -1,38 +1,35 @@
 package com.example.electronicsapi.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.persistence.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "discounts")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Discount {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private int value;
     private String code;
 
-    public String getCode() {
-        return code;
-    }
+    @JsonIgnore
+    @OneToOne(mappedBy = "discount", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Order order;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public Discount(String id, int value, String code) {
-        this.id = id;
-        this.value = value;
-        this.code = code;
-    }
+    private boolean used;
 
 }

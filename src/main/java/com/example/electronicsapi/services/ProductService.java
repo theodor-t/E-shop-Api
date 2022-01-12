@@ -1,29 +1,30 @@
 package com.example.electronicsapi.services;
 
-import com.example.electronicsapi.entities.*;
+import com.example.electronicsapi.entities.Category;
+import com.example.electronicsapi.entities.Discount;
+import com.example.electronicsapi.entities.Order;
+import com.example.electronicsapi.entities.Product;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 public interface ProductService {
     List<Product> getProducts();
 
-    Product getProduct(long productId);
+    Optional<Product> getProduct(int productId);
 
     String addProduct(Product product);
 
     List<Category> getCategories();
 
-    int removeCategory(String category);
-
     List<Product> getCategoryProducts(String category);
 
-    Discount getDiscount(String coupon);
+    Optional<Discount> getDiscount(String coupon);
 
-    Map<String, Boolean> removeDiscount(String id);
+    int deactivateDiscount(int id);
 
-    int addOrders(Orders order);
+    int addOrders(Order order);
 
-    List<Orders> getOrders();
+    List<Order> getOrders();
 
 }

@@ -1,6 +1,27 @@
 package com.example.electronicsapi.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "contacts")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Contact {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     private String surname;
     private String address;
@@ -8,60 +29,7 @@ public class Contact {
     private String city;
     private String country;
 
-    public Contact(String name, String surname, String address, String phone, String city, String country) {
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.phone = phone;
-        this.city = city;
-        this.country = country;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
+    @JsonIgnore
+    @OneToOne(mappedBy = "contact")
+    private Order order;
 }
