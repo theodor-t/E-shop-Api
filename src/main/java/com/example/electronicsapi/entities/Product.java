@@ -42,4 +42,5 @@ public class Product {
                             nullable = false, updatable = false)})
     private List<Capacity> memoryCapacity;
 
+
 }

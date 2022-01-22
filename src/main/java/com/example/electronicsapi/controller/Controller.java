@@ -50,10 +50,10 @@ public class Controller {
         return productService.getDiscount(coupon);
     }
 
-    @GetMapping(path = "/deactivate/{discount}")
-//    @Transactional
-    public int deactivateDiscount(@PathVariable(value = "discount") int id) {
-        return productService.deactivateDiscount(id);
+    @GetMapping(path = "/deactivate/{couponID}")
+    @Transactional
+    public boolean removeDiscount(@PathVariable(value = "couponID") String id) {
+        return productService.removeDiscount(id);
     }
 
     @PostMapping(consumes = {
@@ -64,8 +64,6 @@ public class Controller {
             MediaType.APPLICATION_XML_VALUE
     }, path = "/orders/")
     public int addOrders(@RequestBody Order order) {
-
-        //System.out.println(order.getProducts().size());
 
         return productService.addOrders(order);
     }

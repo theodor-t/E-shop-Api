@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -26,10 +25,10 @@ public class Discount {
     private int value;
     private String code;
 
+    private boolean activated = false;
+
     @JsonIgnore
     @OneToOne(mappedBy = "discount", cascade = CascadeType.ALL, orphanRemoval = true)
     private Order order;
-
-    private boolean used;
 
 }

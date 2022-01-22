@@ -71,13 +71,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int deactivateDiscount(int code) {
+    public boolean removeDiscount(String code) {
 
-        Optional<Discount> searchedDiscount = discountRepository.findById(code);
+        Optional<Discount> toUpdate = discountRepository.findDiscountByCode(code);
 
-        searchedDiscount.ifPresent(discount -> discount.setUsed(true));
+        if (toUpdate.isPresent()) {
+            toUpdate.get().setActivated(true);
+            discountRepository.save(toUpdate.get());
+        }
 
-        return 1;
+        return toUpdate.isPresent();
     }
 
     @Override

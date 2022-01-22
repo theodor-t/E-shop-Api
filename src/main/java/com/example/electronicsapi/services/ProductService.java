@@ -21,7 +21,7 @@ public interface ProductService {
 
     Optional<Discount> getDiscount(String coupon);
 
-    int deactivateDiscount(int id);
+    boolean removeDiscount(String id);
 
     int addOrders(Order order);
 
