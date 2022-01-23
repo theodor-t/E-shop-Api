@@ -22,10 +22,11 @@ public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
     private double price;
     private int quantity;
-    private String color;
-    private String size;
+    private String colors;
+    private String memoryCapacity;
 
     @JsonIgnore
     @ManyToOne

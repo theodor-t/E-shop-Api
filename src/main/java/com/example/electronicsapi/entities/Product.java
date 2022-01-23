@@ -39,7 +39,7 @@ public class Product {
                             nullable = false, updatable = false)},
             inverseJoinColumns = {
                     @JoinColumn(name = "memory_id", referencedColumnName = "id",
-                            nullable = false, updatable = false)})
+                            nullable = true, updatable = false)})
     private List<Capacity> memoryCapacity;
 
 
