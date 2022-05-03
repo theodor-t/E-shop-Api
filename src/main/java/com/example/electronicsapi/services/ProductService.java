@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface ProductService {
     List<Product> getProducts();
 
+    List<Discount> getDiscounts();
+
     Optional<Product> getProduct(int productId);
 
     String addProduct(Product product);

@@ -24,6 +24,11 @@ public class Controller {
         return productService.getProducts();
     }
 
+    @GetMapping("/discounts")
+    public List<Discount> getDiscounts() {
+        return productService.getDiscounts();
+    }
+
     @GetMapping("/product/{productId}")
     public Optional<Product> getProduct(@PathVariable int productId) {
         return productService.getProduct(productId);

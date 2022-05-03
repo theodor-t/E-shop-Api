@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Discount> getDiscounts() {
+        return discountRepository.findAll();
+    }
+
+    @Override
     public Optional<Product> getProduct(int productId) {
 
         return productRepository.findById(productId);
